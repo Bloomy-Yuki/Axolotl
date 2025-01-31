@@ -7,16 +7,10 @@
   
 
 Axolotl repository aims to document the mathematics and physics degrees at RWTH Aachen. this document is set to contain useful data that I have used
-
 in my studies at the University and will be updated on monthly bases and as the content increases I hope that the usefullness of this Project becomes
-
 clearer. this is first and foremost a personal project to help me organize my progress professionally and personally.
 
-  
-
 the plan and organization will go as follows:
-
-  
 
 1. Folders with every module name will be created, ready to host the content of the course.
 
@@ -86,11 +80,13 @@ Things to look out for:
 
   
 
-1. dont have both "." and ":" in any line except card faces
+1. dont have both "." and ":" in any line except card faces. if you must use it, then dont put it in the last two characters in that line
 
-2. dont have "##" except in chapter_name
+2. dont have "##" except in chapter_name, this is a hard rule for keeping track of tags of the flashcards.
 
-3. LaTeX code starts with either "$" or "$$", but the last latex block must end in "$$" 
+3. LaTeX code start and end with either "$" or "$$", but the last latex block within the card content must end in a "$$" latex block.
+
+4. Inclusion of LateX code isnt necessary but ending the flashcard segemnt with an "$$" is required.
 
 ---
 
