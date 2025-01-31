@@ -42,7 +42,7 @@ Things to look out for:
 File_name = input("Enter file name:")
 global Data
 Data = [[],[],[]]
-with open(File_name + ".md") as file:
+with open(File_name + ".md", encoding='utf-8') as file:
     lines = [line.rstrip() for line in file]
      
 # getting the right format:
