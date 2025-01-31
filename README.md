@@ -56,7 +56,7 @@ $$
 
   
 
-2. Card_face $\text{LaTeX_code}$ :
+2. Card_face $\text{LaTeX code}$ :
 
 $$
 \text{LaTeX code}
@@ -86,11 +86,11 @@ Things to look out for:
 
   
 
-4. dont have both "." and ":" in any line except card faces
+1. dont have both "." and ":" in any line except card faces
 
-5. dont have "##" except in chapter_name
+2. dont have "##" except in chapter_name
 
-  
+3. LaTeX code starts with either "$" or "$$", but the last latex block must end in "$$" 
 
 ---
 
