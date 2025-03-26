@@ -3,6 +3,10 @@ import pandas as pd
 this file converts .md files written in Axolotl-standard into
 Anki deck format .csv file.
 -------------------------------------
+V 0.1:
+23.03.2025
+- Added support for all kinds of notes, including texts and anything else really.
+-------------------------------------
 the Axolotl-standard:
 
 ## Chapter_name
@@ -45,7 +49,8 @@ Data = [[],[],[]]
 with open(File_name + ".md", encoding='utf-8') as file:
     lines = [line.rstrip() for line in file]
      
-# getting the right format:
+# 1. getting the right format:
+
 #----------------------------------------------
 
     # replacing double moneysigns:
@@ -74,25 +79,27 @@ def replace_single_money(lines):
     
     for line in range(0,len(lines)):
 
-        for i in range(0,len(lines[line]) - 1):
+        for lett in lines[line]:
 
-            if  (lines[line][i] == '$') and (lines[line][i+1] != '$' ) and (n == 0):
+            if (lett == '$') and (n % 2 == 0):
                     lines[line] = lines[line].replace("$","\\(",1)
-                    n = 1
-            else:  
-                if (lines[line][i] != '$') and (lines[line][i+1] == '$') and (n==1):
+                    n += 1 
+                    
+            if (lett == '$') and (n % 2 != 0):
                     lines[line] = lines[line].replace("$","\\)",1)
-                    n = 0
+                    n += 1
+                    
 
 #----------------------------------------------
 
-# filling the fields of the Data:
+# 2. filling the fields of the Data:
+
 #----------------------------------------------
 
     #filling Data with titles:
 def fill_with_titles(lines):
     for line in range(0,len(lines)):
-        if ("." in lines[line]) and (":" in lines[line][-2::]) and("\\" not in lines[line][-2::]):
+        if ("." in lines[line]) and (":" in lines[line][-2::]) and ("\\" not in lines[line][-2::]):
             Data[1].append(lines[line])
 
 #----------------------------------------------
@@ -121,42 +128,35 @@ def fill_with_content(lines):
     for line in range(0,len(lines)):
         if ("." in lines[line]) and (":" in lines[line][-2::]) and ("\\" not in lines[line][-2::]):
             beg_tex.append(line)
-        if "\\]" in lines[line]:
-            end_tex.append(line)
-
+            if len(beg_tex) > 1:
+                end_tex.append(line - 1)
+    end_tex.append(len(lines)-1) # to have a consistant numbering to increase later in the fillings (the end_tex respond to one less, so should the last element)
+    
     # getting ranges:
     
         #appending last latex entry into the beginning tex list so that 
         #the last elements can be written easily:
-        
-    beg_tex.append(end_tex[-1])
-        
         # using "blocks" as indicators for the loop to divide up the work
         #by going through all lines between the beginning of the block and
         #less than or equal the end of the next block, this is why we added the 
         #last element above to the beg_tex list, namely, to add the last element of 
         # the last block
-        
-    for block in range( 0, len(beg_tex) - 1 ):
-        # candi variable here is used a dummy list storing all the line indicies 
-        # that are between this block and the next one      
-        candi=[]
-        for line_number in end_tex:
-            # here we loop around all entries in the lines in the end_tex list
-            #checking wether they are between this block and the next one
-            if (beg_tex[block] < line_number ) and ( line_number <= beg_tex[block+1]): 
-                candi.append(line_number)
+    
+    for block in range( 0, len(beg_tex) ):
+        # Because both end_tex and beg_tex hav the same length, we can just enumerate the ranges
+        # with simple loop:
         # storing the results
         ranges.append(beg_tex[block])
-        ranges.append(max(candi))
- 
+        ranges.append(end_tex[block])
+
     # getting the content inside Data:
     
     for cont in range(0,len(ranges)):
         content = ""
-        if cont%2 == 0:
+        if cont%2 == 0: #this ensures that we start with beggining blocks, due to the structure of the ranges
             for line in range(ranges[cont]+1,ranges[cont+1]+1):
-                content += lines[line]
+                if "##" not in lines[line]: # to make sure the chapters are not included in the contents
+                    content += lines[line]
             Data[2].append(str(content))
 
 #----------------------------------------------
