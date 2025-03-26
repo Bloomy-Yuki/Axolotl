@@ -36,16 +36,17 @@ the plan and organization will go as follows:
 
   
 
-1. Card_face $\text{LaTeX code}$ :
+1. Card_face $\LaTeX \text{ code}$ :
 
   
 
 $$
-\text{LaTeX code}
+\LaTeX \text{ code}
 $$
 
+some text here. 
 $$
-\text{LaTeX code}
+\LaTeX \text{ code}
 $$
 
   
@@ -53,7 +54,7 @@ $$
 2. Card_face $\text{LaTeX code}$ :
 
 $$
-\text{LaTeX code}
+\LaTeX\text{ code}
 $$
 
   
@@ -64,32 +65,30 @@ $$
 
 3. Card_face:
 
-$$
-\text{LaTeX code}
-$$
+text for the card that might include $\LaTeX$ . being as long as desired, the card content doesn't have
+to be entirely in latex, it can include anything really except to those restriction adhering to the Axolotl standard$\texttrademark$ . 
 
 ...
 
   
-
 ---
-
-  
 
 Things to look out for:
 
   
 
-1. dont have both "." and ":" in any line except card faces. if you must use it, then dont put it in the last two characters in that line
+1. don't have both "." and ":" in any line except card faces. if you must use it, then don't put it in the last two characters in that line
 
-2. dont have "##" except in chapter_name, this is a hard rule for keeping track of tags of the flashcards.
+2. don't have "##" except in chapter_name, this is a hard rule for keeping track of tags of the flashcards.
 
-3. LaTeX code start and end with either "$" or "$$", but the last latex block within the card content must end in a "$$" latex block.
-
-4. Inclusion of LateX code isnt necessary but ending the flashcard segemnt with an "$$" is required.
+3. LaTeX code start and end with either "\$" or "\$\$".
 
 ---
 
-  
+# Links:
 
-# More information
+1. [Geogebra scripts](https://www.geogebra.org/u/sophie_altayf)
+2. [Tableau vizzes](https://public.tableau.com/app/profile/sophie.altayf/vizzes)
+
+
+
